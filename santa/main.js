@@ -21,6 +21,7 @@ const companionList = [
    },
    {
        firstName: 'Gábor',
+
        lastName: 'Nagy',
        area: 'plastic',
        products: ['zokni']
@@ -34,7 +35,7 @@ document.getElementById('companion').addEventListener('submit',function(e){
    addCompanion(form, factory);
 });
 
-document.getElementById('product').addEventListener('submit',function(e){
+document.getElementById('product').addEventListener('submit',function(e){s
    e.preventDefault();
    const form = e.currentTarget;
    addProductForm(form, factory)
@@ -44,8 +45,21 @@ document.getElementById('product').addEventListener('submit',function(e){
 * table render
 */
 function initTable(){
-
-   // TODO 6
+    // TODO 6
+    for(let i = 0; i < companionList.length; i++){ // végigmegyünk a companoin listan
+        const currentElement = companionList[i]; //beletesszuk egy valtozoba a lista i-edik elemét
+        const companion = new Companion( //példányosítjuk a companion classt egy companion változóba
+            i, //az id egyenlő a companion listában lévő indexével
+            currentElement.firstName,
+            currentElement.lastName,
+            currentElement.area
+        );
+        for(const pr of currentElement.products){ //végigmegyünk a currentTarget productokon
+            companion.addProduct(pr); //hozzáadjuk a productokat a companionhoz
+        }
+        factory.addMano(companion); //hozzáadjuk a manoat(companion) a factory-hez
+    }
+    console.log(factory);
 }
 
 
