@@ -5,6 +5,20 @@ class Factory{
     }
     addMano(mano){ //hazzaadunk manokat a manolistahoz
         this.manolista.push(mano); //a példányosított factory manolistajahoz hozzaadjuk a mano-t
+        createRow(mano);
+        appendToSelector(mano);
+    }
+    addManoID(){
+        for(let i = 0; i < this.manolista.length; i++){ //végigmegyünk a manók id-jain
+            this.manolista[i].id = (i + 1); //assignolunk egy egyel nagyobb id-t minden manonak
+        }
+    }
+    showManoById(id){
+        const manowithid = this.manolista[id];
+        refreshProductList(manowithid);
+    }
+    addManoProduct(name, id){
+        this.manolista[id].addProduct(name);
     }
 }
    
