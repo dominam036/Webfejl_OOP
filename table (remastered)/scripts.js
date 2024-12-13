@@ -45,6 +45,27 @@ class Person{
         }
     }
 }
+class FormController{
+    #form
+    constructor(form){
+        this.#form = form;
+    }
+    #getInputById(id){
+        return this.#form.querySelector("#" + id);
+    }
+    get lastname(){
+        const lname = this.#getInputById("lastname");
+        return lname.value;
+    }
+    get firstname1(){
+        const fname1 = this.#getInputById("firstname1");
+        return fname1.value;
+    }
+    get firstname2(){
+        const fname2 = this.#getInputById("firstname2");
+        return fname2.value;
+    }
+}
 function init(){
     for(const per of array){
         const person = new Person(per);
