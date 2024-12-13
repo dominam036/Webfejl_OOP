@@ -36,7 +36,7 @@ class Person{
         const tdfn1 = document.createElement("td");
         tdfn1.innerHTML = this.firstname1;
         row.appendChild(tdfn1);
-        if(this.firstname2 == undefined){
+        if(this.firstname2 == undefined || this.firstname2 == ""){
             tdfn1.colSpan = 2;
         } else{
             const tdfn2 = document.createElement("td");
@@ -67,10 +67,22 @@ class FormController{
     }
 }
 function init(){
+    const form = document.getElementById("form");
+    const tbody = document.getElementById("tbodyId");
     for(const per of array){
         const person = new Person(per);
-        const tbody = document.getElementById("tbodyId");
         person.render(tbody);
     }
+    const formController = new FormController(form); 
+    form.addEventListener("submit", function(e){
+        e.preventDefault();
+        const obj = {
+            firstname1: formController.firstname1,
+            firstname2: formController.firstname2,
+            lastname: formController.lastname
+        };
+        const pers = new Person(obj);
+        pers.render(tbody);
+    })
 }
 init();
